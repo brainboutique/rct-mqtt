@@ -4,24 +4,21 @@
     "mqttTopic":"batterySOC",
     "uom":"%",
     "request": true,
-    "round": true,
     "precision": 1,
     "floatOptions": "*100",
     "dbFloat": true
   },
   "1AC87AA0": {
-    "description": "House power current",
-    "mqttTopic":"powerHouse",
+    "description": "Consumer power current [W] - typically household",
+    "mqttTopic":"powerConsumer",
     "uom":"W",
-    "request": true,
-    "round": true
+    "request": true
   },
   "902AFAFB": {
     "description": "Battery temperature",
     "mqttTopic":"tempBattery",
     "uom":"°C",
     "request": true,
-    "round": true,
     "precision": 1,
     "dbFloat": true,
     "request": true,
@@ -32,7 +29,6 @@
     "mqttTopic":"batteryCapacity",
     "uom":"kWh",
     "request": true,
-    "round": true,
     "precision": 2,
     "floatOptions": "/1000",
     "request": true,
@@ -42,22 +38,21 @@
     "description": "DC input A power [W], Float",
     "mqttTopic":"powerDCA",
     "uom":"W",
-    "request": true,
-    "round": false
+    "aggregateTo": "powerDC",
+    "request": true
   },
   "0CB5D21B": {
     "description": "DC input B power [W], Float",
     "mqttTopic":"powerDCB",
     "uom":"W",
-    "request": true,
-    "round": false
+    "aggregateTo": "powerDC",
+    "request": true
   },
   "91617C58": {
-    "description": "Public grid power (house connection, negative by feed-in) [W], Float",
+    "description": "Public grid power (house connection, negative if feed-in) [W]",
     "mqttTopic":"powerGrid",
     "uom":"W",
-    "request": true,
-    "round": false
+    "request": true
   },
   "400F015B": {
     "description": "Battery power [W]",
@@ -88,7 +83,6 @@
     "mqttTopic":"batteryTargetSOC",
     "uom":"%",
     "request": true,
-    "round": true,
     "precision": 1,
     "floatOptions": "*100",
     "request": true,
@@ -109,9 +103,58 @@
     "requestRatio": 17
   },
   "BD55905F": {
-    "description": "Day energy [Wh]",
+    "description": "Day energy processed [kWh]",
     "mqttTopic":"energyDay",
-    "uom":"Wh",
+    "uom":"kWh",
+    "floatOptions": "/1000",
+    "precision": 2,
+    "request": true,
+    "requestRatio": 4
+  },
+  "2AE703F2": {
+    "description": "Day energy DC A [kWh]",
+    "mqttTopic":"energyDayDCA",
+    "uom":"kWh",
+    "floatOptions": "/1000",
+    "precision": 2,
+    "aggregateTo": "energyDayDC",
+    "request": true,
+    "requestRatio": 4
+  },
+  "FBF3CE97": {
+    "description": "Day energy DC B [kWh]",
+    "mqttTopic":"energyDayDCB",
+    "uom":"kWh",
+    "floatOptions": "/1000",
+    "precision": 2,
+    "aggregateTo": "energyDayDC",
+    "request": true,
+    "requestRatio": 4
+  },
+  "3C87C4F5": {
+    "description": "Day energy Grid Feed [kWh]",
+    "mqttTopic":"energyDayGridFeed",
+    "uom":"kWh",
+    "floatOptions": "*(-1)/1000",
+    "precision": 2,
+    "request": true,
+    "requestRatio": 4
+  },
+  "867DEF7D": {
+    "description": "Day energy Grid Load [kWh]",
+    "mqttTopic":"energyDayGridLoad",
+    "uom":"kWh",
+    "floatOptions": "/1000",
+    "precision": 2,
+    "request": true,
+    "requestRatio": 4
+  },
+  "2F3C1D7D": {
+    "description": "Day energy Consumer [kWh]",
+    "mqttTopic":"energyDayConsumer",
+    "uom":"kWh",
+    "floatOptions": "/1000",
+    "precision": 2,
     "request": true,
     "requestRatio": 4
   }

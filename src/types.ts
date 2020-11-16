@@ -16,6 +16,7 @@ export interface ClientConfigHostRCT {
     port: number;
 }
 export interface ClientConfigMQTT {
+    plainPayload: boolean;
     rootTopic: string;
     host: string;
     port: number;

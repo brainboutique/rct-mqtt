@@ -6,6 +6,7 @@
   "mqtt":{
     "host": "192.168.2.25",
     "port": 1883,
-    "rootTopic": "rct/"
+    "rootTopic": "RCT/",
+    "plainPayload":true
   }
 }

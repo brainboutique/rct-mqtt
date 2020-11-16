@@ -6,7 +6,7 @@ import { sendCmdBuilder } from "./sendCmd";
 require("dotenv").config();
 
 
-export const config: ClientConfig = loadConfig("./config/client.json");
+export const config: ClientConfig = loadConfig("./config/config.json");
 export const ChannelDefinition: any = loadConfig("./config/channels.json");
 
 var client = new net.Socket();

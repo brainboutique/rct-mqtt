@@ -6,7 +6,12 @@ var config:ClientConfig;
 
 export function mqttInit(clientConfig:ClientConfig) {
     config=clientConfig;
-    mqttClient = mqtt.connect("mqtt://"+config.mqtt.host+":"+config.mqtt.port);
+    mqttClient = mqtt.connect("mqtt://"+config.mqtt.host+":"+config.mqtt.port, { will: { topic: config.mqtt.rootTopic +"status", payload: 'offline', retain:true } });
+
+    mqttClient.on("connect",()=>{
+        mqttClient.publish(config.mqtt.rootTopic +"status","online", {retain:true});
+        mqttClient.publish(config.mqtt.rootTopic +"status/ip",require("ip").address(), {retain:true});
+    })
 }
 
 
@@ -65,7 +70,7 @@ export function analyzeResponse(
     if (item.floatOptions != undefined) {
       dataF = eval(dataF + item.floatOptions);
     }
-      if (item.round && item.precision) {
+      if (item.precision) {
         dataF = round(dataF, item.precision ? item.precision : 0);
       } else {
         dataF = Math.round(dataF);
@@ -77,7 +82,19 @@ export function analyzeResponse(
           if (item.lastValue!=dataF || item.lastValuesSkipped<=0) {
               item.lastValue=dataF;
               item.lastValuesSkipped=20;
-              mqttClient.publish(config.mqtt.rootTopic + item.mqttTopic, JSON.stringify({value: dataF, uom: item.uom}));
+              mqttClient.publish(config.mqtt.rootTopic + item.mqttTopic, config.mqtt.plainPayload ? dataF.toString() : JSON.stringify({value: dataF, uom: item.uom}));
+
+              if (item.aggregateTo) {
+                  let sum=0;
+                  for(let itemAgg of Object.values(ChannelDefinition)) {
+                      if ((<any>itemAgg).aggregateTo==item.aggregateTo) {
+                          if ((<any>itemAgg).lastValue)
+                              sum+=(<any>itemAgg).lastValue;
+                      }
+                  }
+                  console.log("Aggregated to "+item.aggregateTo+": "+sum);
+                  mqttClient.publish(config.mqtt.rootTopic + item.aggregateTo, config.mqtt.plainPayload ? sum.toString() : JSON.stringify({value: sum, uom: item.uom}));
+              }
           } else {
               //console.log("Skipping same value for "+item.mqttTopic);
               item.lastValuesSkipped--;

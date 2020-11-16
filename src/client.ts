@@ -7,7 +7,7 @@ require("dotenv").config();
 
 
 export const config: ClientConfig = loadConfig("./config/client.json");
-export const ChannelDefinition: any = loadConfig("./config/config.json");
+export const ChannelDefinition: any = loadConfig("./config/channels.json");
 
 var client = new net.Socket();
 client.connect(config.rct);
@@ -17,14 +17,14 @@ mqttInit(config);
 //sql.migrate();
 
 client.on("connect", function () {
-  var address = client.address() as net.AddressInfo;
-  console.log(`Connected to Host ${address.address}:${address.port}`);
+  //var address = client.address() as net.AddressInfo;
+  //console.log(`Connected to Host ${address.address}:${address.port}`);
 
   let requestItems:string[]=[];
   for(let id of Object.keys(ChannelDefinition)) {
         const item: ConfigItem = ChannelDefinition[id];
         if (item.request) {
-            console.log("Requesting ",item);
+            //console.log("Requesting ",item);
             requestItems.push(id);
         }
   };

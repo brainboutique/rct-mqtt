@@ -1,0 +1,118 @@
+{
+  "959930BF": {
+    "description": "Battery State of Charge (SoC)",
+    "mqttTopic":"batterySOC",
+    "uom":"%",
+    "request": true,
+    "round": true,
+    "precision": 1,
+    "floatOptions": "*100",
+    "dbFloat": true
+  },
+  "1AC87AA0": {
+    "description": "House power current",
+    "mqttTopic":"powerHouse",
+    "uom":"W",
+    "request": true,
+    "round": true
+  },
+  "902AFAFB": {
+    "description": "Battery temperature",
+    "mqttTopic":"tempBattery",
+    "uom":"°C",
+    "request": true,
+    "round": true,
+    "precision": 1,
+    "dbFloat": true,
+    "request": true,
+    "requestRatio": 5
+  },
+  "4BC0F974": {
+    "description": "gross battery capacity kWh",
+    "mqttTopic":"batteryCapacity",
+    "uom":"kWh",
+    "request": true,
+    "round": true,
+    "precision": 2,
+    "floatOptions": "/1000",
+    "request": true,
+    "requestRatio": 30
+  },
+  "DB11855B": {
+    "description": "DC input A power [W], Float",
+    "mqttTopic":"powerDCA",
+    "uom":"W",
+    "request": true,
+    "round": false
+  },
+  "0CB5D21B": {
+    "description": "DC input B power [W], Float",
+    "mqttTopic":"powerDCB",
+    "uom":"W",
+    "request": true,
+    "round": false
+  },
+  "91617C58": {
+    "description": "Public grid power (house connection, negative by feed-in) [W], Float",
+    "mqttTopic":"powerGrid",
+    "uom":"W",
+    "request": true,
+    "round": false
+  },
+  "400F015B": {
+    "description": "Battery power [W]",
+    "mqttTopic":"powerBattery",
+    "uom":"W",
+    "request": true
+  },
+  "A7FA5C5D": {
+    "description": "Battery voltage [V]",
+    "mqttTopic":"voltageBattery",
+    "uom":"V",
+    "request": true
+  },
+  "B55BA2CE": {
+    "description": "DC input A voltage [V]",
+    "mqttTopic":"voltageDCA",
+    "uom":"V",
+    "request": true
+  },
+  "B0041187": {
+    "description": "DC input B voltage [V]",
+    "mqttTopic":"voltageDCB",
+    "uom":"V",
+    "request": true
+  },
+  "8B9FF008": {
+    "description": "Battery target SOC",
+    "mqttTopic":"batteryTargetSOC",
+    "uom":"%",
+    "request": true,
+    "round": true,
+    "precision": 1,
+    "floatOptions": "*100",
+    "request": true,
+    "requestRatio": 5
+  },
+  "F79D41D9": {
+    "description": "Heat sink temperature [°C]",
+    "mqttTopic":"tempHeatSink",
+    "uom":"°C",
+    "request": true,
+    "requestRatio": 17
+  },
+  "4F735D10": {
+    "description": "Heat sink (battery actuator) temperature [°C]",
+    "mqttTopic":"tempHeatSinkBattery",
+    "uom":"°C",
+    "request": true,
+    "requestRatio": 17
+  },
+  "BD55905F": {
+    "description": "Day energy [Wh]",
+    "mqttTopic":"energyDay",
+    "uom":"Wh",
+    "request": true,
+    "requestRatio": 4
+  }
+}

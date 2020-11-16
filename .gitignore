@@ -1,0 +1,12 @@
+*.keystore
+*.sw*
+node_modules
+dist
+.idea
+.temp
+.sass-cache
+bower_components
+*.swp
+*.swo
+*.log
+*.DS_Store
